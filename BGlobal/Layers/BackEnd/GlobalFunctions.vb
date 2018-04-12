@@ -789,6 +789,268 @@ Public Class GlobalFunctions
 
     End Function
 
+    Public Shared Function fnColorInverter(p_objInput As Color) As Color
+
+        Dim dblHue As Double
+        Dim dblSaturation As Double
+        Dim dblBrightness As Double
+
+        Try
+
+            dblHue = p_objInput.GetHue
+            dblSaturation = p_objInput.GetSaturation
+            dblBrightness = p_objInput.GetBrightness
+
+            dblHue = dblHue - 180
+
+            If dblHue < 0 Then
+                dblHue = 360 + dblHue
+            End If
+
+            Return fnColorFromAHSB(255, dblHue, dblSaturation, dblBrightness)
+
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
+
+    Public Shared Function fnFontColor(p_objFundo As Color) As Color
+
+        Dim intR As Integer
+        Dim intG As Integer
+        Dim intB As Integer
+        Dim intAverage As Integer
+        Dim intSum As Integer
+        Dim intDiv As Integer
+        Dim objReturn As Color
+
+        Try
+
+            objReturn = Color.White
+
+            intR = p_objFundo.R
+            intG = p_objFundo.G
+            intB = p_objFundo.B
+
+            intSum = intR + intG + intB
+
+            intDiv = 0
+
+            If intR > 0 Then
+                intDiv = intDiv + 1
+            End If
+
+            If intG > 0 Then
+                intDiv = intDiv + 1
+            End If
+
+            If intB > 0 Then
+                intDiv = intDiv + 1
+            End If
+
+            If intDiv > 0 Then
+
+                intAverage = CInt(intSum / intDiv)
+
+                If intAverage > 128 Then
+                    objReturn = Color.Black
+                End If
+
+            End If
+
+            Return objReturn
+
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
+
+    Public Shared Function fnColorFromAHSB(p_intAlpha As Integer, p_dblHue As Double, p_dblSaturation As Double, p_dblBrightness As Double) As Color
+
+        Dim dblMax As Double
+        Dim dblMid As Double
+        Dim dblMin As Double
+        Dim iSextant As Integer
+        Dim intMax As Integer
+        Dim intMid As Integer
+        Dim intMin As Integer
+
+        Try
+
+            If (0 > p_intAlpha Or 255 < p_intAlpha) Then
+                Throw New ArgumentOutOfRangeException("a", p_intAlpha, "Invalid Alpha")
+            End If
+
+            If (0F > p_dblHue Or 360.0F < p_dblHue) Then
+                Throw New ArgumentOutOfRangeException("h", p_dblHue, "Invalid Hue")
+            End If
+
+            If (0F > p_dblSaturation Or 1.0F < p_dblSaturation) Then
+                Throw New ArgumentOutOfRangeException("s", p_dblSaturation, "Invalid Saturation")
+            End If
+
+            If (0F > p_dblBrightness Or 1.0F < p_dblBrightness) Then
+                Throw New ArgumentOutOfRangeException("b", p_dblBrightness, "Invalid Brightness")
+            End If
+
+            If (0 = p_dblSaturation) Then
+                Return Color.FromArgb(p_intAlpha, Convert.ToInt32(p_dblBrightness * 255), Convert.ToInt32(p_dblBrightness * 255), Convert.ToInt32(p_dblBrightness * 255))
+            End If
+
+            If (0.5 < p_dblBrightness) Then
+                dblMax = p_dblBrightness - (p_dblBrightness * p_dblSaturation) + p_dblSaturation
+                dblMin = p_dblBrightness + (p_dblBrightness * p_dblSaturation) - p_dblSaturation
+            Else
+                dblMax = p_dblBrightness + (p_dblBrightness * p_dblSaturation)
+                dblMin = p_dblBrightness - (p_dblBrightness * p_dblSaturation)
+            End If
+
+            iSextant = CInt(Math.Floor(p_dblHue / 60.0F))
+            If (300.0F <= p_dblHue) Then
+                p_dblHue -= 360.0F
+            End If
+            p_dblHue /= 60.0F
+            p_dblHue -= 2.0F * CDbl(Math.Floor(((iSextant + 1.0F) Mod 6.0F) / 2.0F))
+            If (0 = iSextant Mod 2) Then
+                dblMid = p_dblHue * (dblMax - dblMin) + dblMin
+            Else
+                dblMid = dblMin - p_dblHue * (dblMax - dblMin)
+            End If
+
+            intMax = Convert.ToInt32(dblMax * 255)
+            intMid = Convert.ToInt32(dblMid * 255)
+            intMin = Convert.ToInt32(dblMin * 255)
+
+            Select Case iSextant
+                Case 1
+                    Return Color.FromArgb(p_intAlpha, intMid, intMax, intMin)
+                Case 2
+                    Return Color.FromArgb(p_intAlpha, intMin, intMax, intMid)
+                Case 3
+                    Return Color.FromArgb(p_intAlpha, intMin, intMid, intMax)
+                Case 4
+                    Return Color.FromArgb(p_intAlpha, intMid, intMin, intMax)
+                Case 5
+                    Return Color.FromArgb(p_intAlpha, intMax, intMin, intMid)
+                Case Else
+                    Return Color.FromArgb(p_intAlpha, intMax, intMid, intMin)
+            End Select
+
+        Catch ex As Exception
+
+        End Try
+
+
+    End Function
+
+    Public Shared Function fnRandomColorList(p_intQuantity As Integer) As List(Of Color)
+
+        Dim objReturn As List(Of Color)
+        Dim objAuxColor As Color
+        Dim dblHue As Double
+        Dim dblGrid As Double
+        Dim objRand As Random
+
+        Try
+
+            objReturn = New List(Of Color)
+
+            dblGrid = 0
+
+            objRand = New Random
+            Randomize()
+
+            If p_intQuantity > 0 Then
+
+                dblGrid = 360 / p_intQuantity
+
+                dblHue = 0
+
+                Do While dblHue < 360
+
+                    objAuxColor = fnColorFromAHSB(255, dblHue, 1, 0.5)
+
+                    objReturn.Add(objAuxColor)
+
+                    dblHue = dblHue + dblGrid
+
+                Loop
+
+            End If
+
+            Return objReturn
+
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
+
+    Public Shared Function fnPing(p_strIp As String) As Boolean
+
+        Dim blnReturn As Boolean
+        Dim strAuxHost As String
+
+        Try
+            blnReturn = False
+            Try
+                strAuxHost = p_strIp.Split(",")(0)
+            Catch ex As Exception
+                strAuxHost = p_strIp
+            End Try
+
+            For i = 0 To 3
+
+                If My.Computer.Network.Ping(strAuxHost) Then
+                    blnReturn = True
+                    Exit For
+                End If
+            Next
+
+            Return blnReturn
+
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
+
+    Public Shared Function fnCheckProcess(p_strProcessName As String) As Integer
+
+        Dim intReturn As Integer
+
+        Try
+            intReturn = fnCheckProcess(p_strProcessName, "EXE")
+        Catch ex As Exception
+            intReturn = 0
+        End Try
+
+        Return intReturn
+
+    End Function
+
+    Public Shared Function fnCheckProcess(p_strProcessName As String, p_srtExtenssion As String) As Integer
+
+        Dim intReturn As Integer
+        Dim objProcess As Process()
+
+        Try
+
+            intReturn = 0
+
+            If p_strProcessName.Trim.ToUpper.EndsWith("." & p_srtExtenssion.Trim) Then
+                p_strProcessName = p_strProcessName.Substring(0, p_strProcessName.Trim.Length - 4)
+            End If
+
+            objProcess = Process.GetProcessesByName(p_strProcessName)
+
+            intReturn = objProcess.Count
+
+        Catch ex As Exception
+            intReturn = 0
+        End Try
+
+        Return intReturn
+
+    End Function
 
 #End Region
 
