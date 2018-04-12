@@ -68,8 +68,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Basic\clsMessage.vb" />
-    <Compile Include="Layers\Business\GlobalFunctions.vb" />
-    <Compile Include="Layers\Business\RestWebService.vb" />
+    <Compile Include="Layers\BackEnd\GlobalFunctions.vb" />
+    <Compile Include="Layers\BackEnd\RestWebService.vb" />
+    <Compile Include="Layers\BackEnd\SocketService.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
