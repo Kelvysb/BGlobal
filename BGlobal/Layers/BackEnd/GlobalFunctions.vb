@@ -1054,11 +1054,19 @@ Public Class GlobalFunctions
     End Function
 
     Public Shared Function fnBitmapToBitmapImage(p_objBitmap As Bitmap) As BitmapImage
+        Try
+            Return fnBitmapToBitmapImage(p_objBitmap, System.Drawing.Imaging.ImageFormat.Png)
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
+
+    Public Shared Function fnBitmapToBitmapImage(p_objBitmap As Bitmap, p_Format As System.Drawing.Imaging.ImageFormat) As BitmapImage
         Dim objMS As MemoryStream = New MemoryStream()
         Dim objBitMapImage As BitmapImage
         Try
             objMS = New MemoryStream()
-            p_objBitmap.Save(objMS, System.Drawing.Imaging.ImageFormat.Bmp)
+            p_objBitmap.Save(objMS, p_Format)
             objBitMapImage = New BitmapImage()
             objBitMapImage.BeginInit()
             objMS.Seek(0, SeekOrigin.Begin)
