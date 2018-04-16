@@ -41,6 +41,7 @@ Imports System.Text
 Imports System.Drawing.Imaging
 Imports System.Drawing
 Imports System.Net
+Imports System.Windows.Media.Imaging
 
 Public Class GlobalFunctions
 
@@ -1051,6 +1052,24 @@ Public Class GlobalFunctions
         Return intReturn
 
     End Function
+
+    Public Shared Function fnBitmapToBitmapImage(p_objBitmap As Bitmap) As BitmapImage
+        Dim objMS As MemoryStream = New MemoryStream()
+        Dim objBitMapImage As BitmapImage
+        Try
+            objMS = New MemoryStream()
+            p_objBitmap.Save(objMS, System.Drawing.Imaging.ImageFormat.Bmp)
+            objBitMapImage = New BitmapImage()
+            objBitMapImage.BeginInit()
+            objMS.Seek(0, SeekOrigin.Begin)
+            objBitMapImage.StreamSource = objMS
+            objBitMapImage.EndInit()
+            Return objBitMapImage
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
+
 
 #End Region
 

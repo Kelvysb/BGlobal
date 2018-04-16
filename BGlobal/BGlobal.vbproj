@@ -46,14 +46,18 @@
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\BClassGenerator\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Net.Http" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Import Include="Microsoft.VisualBasic" />
@@ -67,7 +71,9 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Basic\clsLogger.vb" />
     <Compile Include="Basic\clsMessage.vb" />
+    <Compile Include="Layers\BackEnd\BLogger.vb" />
     <Compile Include="Layers\BackEnd\GlobalFunctions.vb" />
     <Compile Include="Layers\BackEnd\RestWebService.vb" />
     <Compile Include="Layers\BackEnd\SocketService.vb" />
@@ -109,6 +115,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="COPYING.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Layers\FrontEnd\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
