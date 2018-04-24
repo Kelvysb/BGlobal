@@ -1078,6 +1078,26 @@ Public Class GlobalFunctions
         End Try
     End Function
 
+    Public Shared Sub sbDirectoryDeleteAll(p_strPath As String)
+        Try
+
+            For Each Fil As String In Directory.GetFiles(p_strPath)
+                File.Delete(Fil)
+            Next
+
+            For Each Dic As String In Directory.GetDirectories(p_strPath)
+                Call sbDirectoryDeleteAll(Dic)
+                Directory.Delete(Dic, True)
+            Next
+
+            Directory.Delete(p_strPath, True)
+
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+
+
 
 #End Region
 
