@@ -5,10 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Test"
         mc:Ignorable="d"
-        Title="Test" Height="130" Width="200">
+        Title="Test" Height="225.301" Width="200">
     <StackPanel>
         <Button Name="btnTestDirect" Content="Direct" Margin="5"/>
         <Button Name="btnTestResume" Content="Resume" Margin="5"/>
         <Button Name="btnTestException" Content="Exception" Margin="5"/>
+        <Button Name="btnImage" Content="Image Vault Test" Margin="5"/>
+        <Image Name="imgTest" Margin="5"/>
     </StackPanel>
 </Window>

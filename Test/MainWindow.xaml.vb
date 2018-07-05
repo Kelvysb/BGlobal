@@ -1,4 +1,6 @@
 ﻿Imports BGlobal
+Imports Microsoft.WindowsAPICodePack.Dialogs
+Imports System.IO
 
 Class MainWindow
 
@@ -38,6 +40,45 @@ Class MainWindow
 
         Catch ex As Exception
             BLogger.Instance.sbLog(ex)
+        End Try
+    End Sub
+
+    Private Sub btnImage_Click(sender As Object, e As RoutedEventArgs) Handles btnImage.Click
+        Try
+            Call sbOpenImage()
+        Catch ex As Exception
+            MessageBox.Show(ex.Message)
+        End Try
+    End Sub
+
+    Private Sub sbOpenImage()
+        Dim objDialog As CommonOpenFileDialog
+        Dim objVault As clsImageVault
+
+        Try
+            objDialog = New CommonOpenFileDialog
+            objDialog.Title = "Open"
+            objDialog.Filters.Add(New CommonFileDialogFilter("Iamges", ".png;.jpg;.gif;.bmp;.jpeg"))
+
+            If objDialog.ShowDialog = CommonFileDialogResult.Ok Then
+                If Path.GetExtension(objDialog.FileName).Trim.ToUpper = ".PNG" Or
+                Path.GetExtension(objDialog.FileName).Trim.ToUpper = ".JPG" Or
+                Path.GetExtension(objDialog.FileName).Trim.ToUpper = ".GIF" Or
+                Path.GetExtension(objDialog.FileName).Trim.ToUpper = ".BMP" Or
+                Path.GetExtension(objDialog.FileName).Trim.ToUpper = ".JPEG" Then
+
+                    objVault = New clsImageVault
+                    imgTest.Source = objVault.OpenImage(objDialog.FileName)
+
+                Else
+                    MessageBox.Show("Invalid type")
+                End If
+            End If
+
+            objDialog = Nothing
+
+        Catch ex As Exception
+            Throw
         End Try
     End Sub
 End Class

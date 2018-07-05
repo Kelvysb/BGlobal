@@ -74,6 +74,7 @@
     <Compile Include="Basic\clsLogger.vb" />
     <Compile Include="Basic\clsMessage.vb" />
     <Compile Include="Layers\BackEnd\BLogger.vb" />
+    <Compile Include="Layers\BackEnd\clsImageVault.vb" />
     <Compile Include="Layers\BackEnd\GlobalFunctions.vb" />
     <Compile Include="Layers\BackEnd\RestWebService.vb" />
     <Compile Include="Layers\BackEnd\SocketService.vb" />
