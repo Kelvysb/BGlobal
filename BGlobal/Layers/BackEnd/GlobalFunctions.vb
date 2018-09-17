@@ -1097,7 +1097,39 @@ Public Class GlobalFunctions
         End Try
     End Sub
 
+    Public Shared Function fnDataTableToText(p_objDataTable As DataTable, p_strSeparator As String, p_blnAddTitleLine As Boolean) As String
 
+        Dim strReturn As String
+
+        Try
+            strReturn = ""
+
+            If p_blnAddTitleLine Then
+                For Each column As DataColumn In p_objDataTable.Columns
+                    strReturn = strReturn & column.ColumnName.Trim
+                    If column IsNot p_objDataTable.Columns(p_objDataTable.Columns.Count - 1) Then
+                        strReturn = strReturn & p_strSeparator
+                    End If
+                Next
+                strReturn = strReturn & Chr(13) & Chr(10)
+            End If
+
+            For Each row As DataRow In p_objDataTable.Rows
+                For Each column As DataColumn In p_objDataTable.Columns
+                    strReturn = strReturn & row(column.ColumnName.Trim).ToString
+                    If column IsNot p_objDataTable.Columns(p_objDataTable.Columns.Count - 1) Then
+                        strReturn = strReturn & p_strSeparator
+                    End If
+                Next
+                strReturn = strReturn & Chr(13) & Chr(10)
+            Next
+
+            Return strReturn
+
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
 
 #End Region
 

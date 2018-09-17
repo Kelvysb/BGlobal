@@ -172,20 +172,24 @@ Public Class clsImageVaultItem
             objAuxImage.EndInit()
 
 
-            objEncoder = New PngBitmapEncoder
-            'If Path.GetExtension(strImagePath).Trim.ToUpper = ".PNG" Then
-            '    objEncoder = New PngBitmapEncoder
-            'ElseIf Path.GetExtension(strImagePath).Trim.ToUpper = ".JPG" Or Path.GetExtension(strImagePath).Trim.ToUpper = "JPEG" Then
-            '    objEncoder = New JpegBitmapEncoder
-            'ElseIf Path.GetExtension(strImagePath).Trim.ToUpper = ".GIF" Then
-            '    objEncoder = New GifBitmapEncoder
-            'Else
-            '    objEncoder = New BmpBitmapEncoder
-            'End If
-
-            objEncoder.Frames.Add(BitmapFrame.Create(objAuxImage))
-            objStream = New MemoryStream
-            objEncoder.Save(objStream)
+            Try
+                objEncoder = New PngBitmapEncoder
+                objEncoder.Frames.Add(BitmapFrame.Create(objAuxImage))
+                objStream = New MemoryStream
+                objEncoder.Save(objStream)
+            Catch ex As Exception
+                Try
+                    objEncoder = New JpegBitmapEncoder
+                    objEncoder.Frames.Add(BitmapFrame.Create(objAuxImage))
+                    objStream = New MemoryStream
+                    objEncoder.Save(objStream)
+                Catch ex2 As Exception
+                    objEncoder = New BmpBitmapEncoder
+                    objEncoder.Frames.Add(BitmapFrame.Create(objAuxImage))
+                    objStream = New MemoryStream
+                    objEncoder.Save(objStream)
+                End Try
+            End Try
 
             objEncoder = Nothing
             objAuxImage = Nothing
