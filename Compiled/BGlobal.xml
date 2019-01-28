@@ -22,5 +22,250 @@ BGlobal
   resource lookups using this strongly typed resource class.
 </summary>
 </member>
+<member name="P:BGlobal.clsLoggerGroup.Process">
+ <summary>
+ Process name
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:BGlobal.clsLoggerGroup.LogDate">
+ <summary>
+ Day of the log file
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:BGlobal.clsLoggerGroup.FirstLog">
+ <summary>
+ Date time of the first log file
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:BGlobal.clsLoggerGroup.LastLog">
+ <summary>
+ Date time of the last log file
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:BGlobal.clsLoggerGroup.Logs">
+ <summary>
+ Logs
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:BGlobal.clsLogger.Code">
+ <summary>
+ Log Code
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:BGlobal.clsLogger.Process">
+ <summary>
+ Log Process
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:BGlobal.clsLogger.Description">
+ <summary>
+ Log Description
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:BGlobal.clsLogger.Subroutine">
+ <summary>
+ Log Subroutine
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:BGlobal.clsLogger.CurrentClass">
+ <summary>
+ Log Class
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:BGlobal.clsLogger.Line">
+ <summary>
+ Log Line
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:BGlobal.clsLogger.User">
+ <summary>
+ Log User
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:BGlobal.clsLogger.Computer">
+ <summary>
+ Log Computer
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:BGlobal.clsLogger.IsError">
+ <summary>
+ Log Is Error
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="T:BGlobal.clsMessage">
+ <summary>
+ General communication message class
+ </summary>
+</member>
+<member name="M:BGlobal.clsMessage.fnToXml">
+ <summary>
+ Convert to XML
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="M:BGlobal.clsMessage.Clone">
+ <summary>
+ Clone the object
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="M:BGlobal.clsMessage.fnGetParameter(System.String)">
+ <summary>
+ Get single parameter
+ </summary>
+ <param name="p_strKey">Parameter key</param>
+ <returns></returns>
+</member>
+<member name="M:BGlobal.clsMessage.sbSetParameter(System.String,System.String,System.String)">
+ <summary>
+ Set single parameter
+ </summary>
+ <param name="p_strKey">Parameter key</param>
+ <param name="p_strType">Parameter Type</param>
+ <param name="p_strValue">Parameter value</param>
+</member>
+<member name="M:BGlobal.clsMessage.sbSetParameter(BGlobal.clsParameter)">
+ <summary>
+ Set single parameter
+ </summary>
+ <param name="p_objParameter">Parameter</param>
+</member>
+<member name="P:BGlobal.clsMessage.Type">
+ <summary>
+ Type da solicitação
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:BGlobal.clsMessage.Parameters">
+ <summary>
+ Type da solicitação
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:BGlobal.clsMessage.Parameters(System.String)">
+ <summary>
+ Type da solicitação
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:BGlobal.clsMessage.Data">
+ <summary>
+ Data da Soicitacao
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:BGlobal.clsMessage.Status">
+ <summary>
+ Status
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:BGlobal.clsMessage.Message">
+ <summary>
+ Message
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="T:BGlobal.clsParameter">
+ <summary>
+ Parameter Class
+ </summary>
+</member>
+<member name="M:BGlobal.clsParameter.fnToXml">
+ <summary>
+ Converte o objeto em Xml
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="M:BGlobal.clsParameter.sbFromXml(System.Xml.Linq.XDocument)">
+ <summary>
+ Cria o objeto apartir de um xml
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="M:BGlobal.clsParameter.Clone">
+ <summary>
+ Cria um clone do objeto
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="P:BGlobal.clsParameter.Key">
+ <summary>
+ Parameter Key
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:BGlobal.clsParameter.Type">
+ <summary>
+ Parameter Type
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:BGlobal.clsParameter.Value">
+ <summary>
+ Parameter Value
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
 </members>
 </doc>
