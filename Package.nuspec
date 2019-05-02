@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>kelvysb.BGlobal</id>
+    <version>1.0.0.6</version>
+    <authors>Kelvys Boniek Pantaleão</authors>
+    <owners>Kelvys Boniek Pantaleão</owners>
+    <license type="file">licence\LICENCE.txt</license>
+    <projectUrl>https://github.com/kelvysb/BGlobal</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Compilation of functions and utilities</description>
+    <releaseNotes></releaseNotes>
+    <copyright>Copyright 2019</copyright>
+    <tags>Global Functions Util</tags>
+    <dependencies>
+      <dependency id="Newtonsoft.Json" version="12.0.1" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="Compiled\BGlobal.dll" target="lib\BGlobal.dll" />
+    <file src="BGlobal\COPYING.txt" target="licence\LICENCE.txt" />
+  </files>
+</package>
